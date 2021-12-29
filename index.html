@@ -34,6 +34,8 @@
                     <a href="#" class="nav-link">Departments</a>
                 </li>
             </ul>
+            <!--bootstrap modal is to get the popup once any button is clicked without using any js.
+            Its used here for login-->
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#login">
@@ -41,8 +43,6 @@
                       </button>
                 </li>
             </ul>
-            <!--checkout bootstrap modal to get the popup once any button is clicked without using any js
-            Can be used for login-->
             <!-- <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a href="#" class="nav-link" ><i class="bi bi-person"></i></a>
@@ -50,6 +50,7 @@
             </ul> -->
         </div>        
     </nav>
+
     <!--banner-->
     <section class="bg-dark text-light p-5 text-center">
         <div class="container-fluid">
@@ -64,7 +65,8 @@
             </div>
         </div>
     </section>
-    <!--boxes-->
+
+    <!--Cards-->
     <section class="p-5">
         <div class="container">
             <h2 class="text-center text-dark">Upcoming events</h2><br>
@@ -102,6 +104,7 @@
             </div>
         </div>
     </section>
+
     <!--Clubs-->
     <section class="p-5" id="clubs">
         <div class="container">
@@ -123,6 +126,7 @@
             </div>
         </div>
     </section>
+
     <!--events-->
     <section class="p-5 bg-dark text-light" id="events">
         <div class="container">
@@ -145,12 +149,14 @@
             
         </div>
     </section>
+
     <!--footer-->
     <footer class="p-5 bg-black sh text-white text-center align-items-center">
         <div class="container">
             <p>CopyRight &copy; 2021 DBS</p>
         </div>
     </footer>
+
     <!-- Modal for login -->
     <div class="modal fade" id="login" tabindex="-1" aria-labelledby="loginLabel" aria-hidden="true">
         <div class="modal-dialog">
