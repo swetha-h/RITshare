@@ -1,7 +1,7 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-var eventsController = require('../controllers/clubs')
+var eventsController = require("../controllers/events");
 
-router.get('/', eventsController);
+router.get("/", eventsController);
 
 module.exports = router;

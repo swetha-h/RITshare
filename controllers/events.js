@@ -1,5 +1,5 @@
-var path = require('path');
+var path = require("path");
 
 module.exports = function (req, res, next) {
-    res.sendFile(path.join(__dirname + '/../public/events.html'));
+  res.sendFile(path.join(__dirname + "/../public/events.html"));
 };
