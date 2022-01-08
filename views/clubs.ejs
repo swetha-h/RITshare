@@ -81,20 +81,20 @@
             <div class="row text-center g-4"><!--g-4 is to space btw the cards when they are atcked on each other in smaller screens-->
                
                 <!-- for each item in list_of_events -->
-                <!-- <% for(var i=0; i < listOfEvents.length; i++) { %> -->
+                <% for(var i=0; i < clubs.length; i++) { %> 
                 <div class="col-md-4">
                     <div class="card bg-dark text-white">
-                        <img src="images/Wallpaper.jpg" class="card-img" alt="event img">
+                        <img src="images/Wallpaper.jpg" class="card-img h-50" alt="event img">
                         <div class="card-img-overlay">
-                          <h5 class="card-title">title</h5>
-                          <p class="card-text">title content</p>
+                          <h5 class="card-title"><%= clubs[i].name %></h5>
+                          <p class="card-text"><%= clubs[i].description %></p>
                           <a href="#" class="btn btn-light">more</a>
                         </div>
-                      </div>
+                    </div>
                 </div>
 
                 
-                <!-- <% } %> -->
+                 <% } %> 
 
                 
             </div>
