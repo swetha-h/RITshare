@@ -1,30 +1,33 @@
 {
-  "name": "ritshare",
-  "version": "0.0.0",
-  "description": "Platform to promote all the events of the college",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "dotenv": "^10.0.0",
-    "ejs": "^2.6.2",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "mongoose": "^6.1.5",
-    "morgan": "~1.9.1"
-  },
-  "contributors": [
-    {
-      "name": "Sai Tanmayee"
-    },
-    {
-      "name": "Sinchana M L"
-    },
-    {
-      "name": "Swetha H"
-    }
-  ]
+	"name": "ritshare",
+	"version": "0.0.0",
+	"description": "Platform to promote all the events of the college",
+	"private": true,
+	"scripts": {
+		"start": "nodemon ./bin/www"
+	},
+	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"body-parser": "^1.19.1",
+		"cookie-parser": "~1.4.4",
+		"debug": "~2.6.9",
+		"dotenv": "^10.0.0",
+		"ejs": "^2.6.2",
+		"express": "~4.16.1",
+		"http-errors": "~1.6.3",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^6.1.5",
+		"morgan": "~1.9.1"
+	},
+	"contributors": [
+		{
+			"name": "Sai Tanmayee"
+		},
+		{
+			"name": "Sinchana M L"
+		},
+		{
+			"name": "Swetha H"
+		}
+	]
 }
