@@ -3,7 +3,14 @@ const clubModel = require("../models/club");
 
 module.exports = {
   index: function (req, res, next) {
-    res.sendFile(path.join(__dirname + "/../public/clubs.html"));
+    //res.sendFile(path.join(__dirname + "/../public/clubs.html"));
+    let clubs = clubModel.find({},function(err,clubs){
+      if (err) throw error;
+      else{
+        //clublist=json(clubs);
+        res.render("clubs",{clubs:clubs});
+      }        
+    })
   },
   getCreate: function (req, res, next) {
     res.render("clubsCreate");
