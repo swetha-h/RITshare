@@ -36,6 +36,11 @@
             </ul> -->
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-primary" id="addEvent">
+                            <div class="bi bi-plus"> add event</div>
+                        </button>
+                    </li>
                     <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#login">
                         Login
                       </button>
@@ -143,7 +148,7 @@
     </footer>
     <!-- Modal for login -->
     <div class="modal fade" id="login" tabindex="-1" aria-labelledby="loginLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
             <h5 class="modal-title" id="loginLabel">Modal title</h5>
@@ -184,6 +189,12 @@
     $('#myCarousel').carousel({
     interval: 5000
     })
+    </script>
+    <script>
+
+    document.getElementById("addEvent").onclick = function() {
+        document.getElementById("addEvent").style.display = "none";
+    }
 </script>
 </body>
 </html>

@@ -90,7 +90,10 @@
                         <div class="card-img-overlay">
                           <h5 class="card-title">Title</h5>
                           <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, provident necessitatibus vero a harum aperiam!</p>
-                          <a href="#" class="btn btn-light">more</a>
+                          <!-- <a href="#" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#more">more</a> -->
+                          <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#more">
+                            Login
+                          </button>
                         </div>
                       </div>
                 </div>
@@ -102,5 +105,33 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal -->
+
+    <div class="modal fade" id="moreCenter" tabindex="-1" role="dialog" aria-labelledby="moreCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="moreLongTitle">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            ...
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+     crossorigin="anonymous">
+     
+    </script>
 </body>
 </html>
