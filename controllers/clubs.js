@@ -6,7 +6,6 @@ module.exports = {
     let clubs = clubModel.find({}, function (err, clubs) {
       if (err) throw error;
       else {
-        //clublist=json(clubs);
         res.render("clubs", { clubs: clubs });
       }
     });
