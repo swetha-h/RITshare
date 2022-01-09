@@ -71,17 +71,28 @@
             <div class="row text-center g-4"><!--g-4 is to space btw the cards when they are atcked on each other in smaller screens-->
                
                 <!-- for each item in list_of_events -->
-                <% for(var i=0; i < listOfEvents.length; i++) { %>
-                <div class="col-md-4">
-                    <div class="card bg-dark text-white">
-                        <img src=<%=listOfEvents[i].IMAGE_URL%> class="card-img" alt="event img">
-                        <div class="card-img-overlay">
-                          <h5 class="card-title"><%=listOfEvents[i].EVENT_TITLE%></h5>
-                          <p class="card-text"><%=listOfEvents[i].EVENT_DESC%></p>
-                          <a href="#" class="btn btn-light">more</a>
-                        </div>
-                      </div>
-                </div>
+                <% for(var i=0; i < event.length; i++) { %>
+                    <div class="col-md-4">
+                        <div class="card bg-dark text-white">
+                            <img src="images/Wallpaper.jpg" class="card-img" alt="event img">
+                            <div class="card-img-overlay">
+                              <h5 class="card-title"><%=event[i].name%></h5>
+                              <p class="card-text"><%=event[i].description%><br>Venue: 
+                                  <%=event[i].venue%><br>Date: 
+                                <%=event[i].date.toDateString()%><br>Time: 
+                                <%=event[i].date.toLocaleString('en-GB', { hour:'numeric', minute:'numeric', hour12:false } )%>
+                            </p>
+                            <button
+                            type="button"
+                            class="btn btn-dark"
+                            data-bs-toggle="modal"
+                            data-bs-target="#more"
+                          >
+                            more
+                          </button>
+                            </div>
+                          </div>
+                    </div>
 
                 
                 <% } %>
@@ -90,6 +101,42 @@
             </div>
         </div>
     </section>
+    <!-- Modal -->
+
+    <div
+      class="modal fade"
+      id="more"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="moreCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="moreLongTitle">Poster</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">...</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
     <!--Clubs-->
     <section class="p-5" id="clubs">
         <div class="container">
@@ -104,7 +151,7 @@
                          Ut quas praesentium alias inventore aspernatur at.
                          Lorem ipsum dolor sit amet. 
                     </p>
-                    <a href="clubs.html" class="btn btn-light mt-4">
+                    <a href="/clubs" class="btn btn-light mt-4">
                         <i class="bi bi-chevron-right">Check out</i>
                     </a>
                 </div>
@@ -124,7 +171,7 @@
                          Ut quas praesentium alias inventore aspernatur at.
                          Lorem ipsum dolor sit amet. 
                     </p>
-                    <a href="events.html" class="btn btn-light mt-4">
+                    <a href="/events" class="btn btn-light mt-4">
                         <i class="bi bi-chevron-right">Check out</i>
                     </a>
                 </div>
