@@ -47,13 +47,13 @@ app.post('/api/change-password', async (req, res) => {
 	const { token, newpassword: plainTextPassword } = req.body;
 
 	if (!plainTextPassword || typeof plainTextPassword !== 'string') {
-		return res.json({ status: 'error', error: 'Invalid password' });
+		return res.json({ status: 'error', error: 'Invalid password!' });
 	}
 
 	if (plainTextPassword.length < 5) {
 		return res.json({
 			status: 'error',
-			error: 'Password too small. Should be atleast 6 characters'
+			error: 'Password too small. Should be atleast 6 characters.'
 		});
 	}
 
@@ -83,7 +83,7 @@ app.post('/api/login', async (req, res) => {
 	const user = await User.findOne({ usn }).lean();
 
 	if (!user) {
-		return res.json({ status: 'error', error: 'Invalid usn/password' });
+		return res.json({ status: 'error', error: 'Invalid USN/Password!' });
 	}
 
 	if (await bcrypt.compare(password, user.password)) {
@@ -98,7 +98,7 @@ app.post('/api/login', async (req, res) => {
 		return res.json({ status: 'ok', data: token });
 	}
 
-	res.json({ status: 'error', error: 'Invalid username/password' });
+	res.json({ status: 'error', error: 'Invalid USN/Password!' });
 });
 
 //signup
@@ -106,15 +106,15 @@ app.post('/api/register', async (req, res) => {
 	const { usn, username, password: plainTextPassword } = req.body;
 
 	if (!username || typeof username !== 'string') {
-		return res.json({ status: 'error', error: 'Invalid username' });
+		return res.json({ status: 'error', error: 'Invalid username!' });
 	}
 
 	if (!usn || typeof usn !== 'string' || usn.length != 10) {
-		return res.json({ status: 'error', error: 'Invalid usn' });
+		return res.json({ status: 'error', error: 'Invalid USN!' });
 	}
 
 	if (!plainTextPassword || typeof plainTextPassword !== 'string') {
-		return res.json({ status: 'error', error: 'Invalid password' });
+		return res.json({ status: 'error', error: 'Invalid password!' });
 	}
 
 	if (plainTextPassword.length < 5) {
@@ -136,7 +136,10 @@ app.post('/api/register', async (req, res) => {
 	} catch (error) {
 		if (error.code === 11000) {
 			// duplicate key
-			return res.json({ status: 'error', error: 'USN already in use' });
+			return res.json({
+				status: 'error',
+				error: 'USN already in use!'
+			});
 		}
 		throw error;
 	}

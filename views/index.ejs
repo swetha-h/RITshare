@@ -1,189 +1,499 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="stylesheets/main.css">
-    <title>RITshare</title>
-</head>
-<body>
-    <!--navbar-->
-    <nav class="navbar navbar-expand-lg bg-black navbar-dark position-sticky">
-        <div class="container-fluid">
-            <a href="#" class="navbar-brand">RITshare</a>
-            <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+			crossorigin="anonymous"
+		/>
+		
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+		/>
+		
+		<link rel="stylesheet" href="stylesheets/main.css" />
+		<title>RITshare</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<script>
+			let token = "";
+			let changed = false;
+			</script>
+		<!--navbar-->
+		<nav class="navbar navbar-expand-lg bg-black navbar-dark position-sticky">
+			<div class="container-fluid">
+				<a href="#" class="navbar-brand">RITshare</a>
+				<!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
                 <span class="navbar-toggler icon"></span>
             </button> -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="#clubs" class="nav-link">Clubs</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="#events" class="nav-link">Events</a>
-                </li>
-            </ul>
-            <!-- <ul class="navbar-nav">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a href="#clubs" class="nav-link">Clubs</a>
+					</li>
+				</ul>
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a href="#events" class="nav-link">Events</a>
+					</li>
+				</ul>
+				<!-- <ul class="navbar-nav">
                 <li class="nav-item">
                     <a href="#" class="nav-link">Departments</a>
                 </li>
             </ul> -->
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#login">
-                        Login
-                      </button>
-                </li>
-            </ul>
-            <!--checkout bootstrap modal to get the popup once any button is clicked without using any js
+                 
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item">
+						<button
+							type="button"
+							id = "btn1"
+							style="margin:5px"
+							class="btn btn-dark"
+							data-bs-toggle="modal"
+							data-bs-target="#login"
+						>
+							Login
+						</button>
+					</li>
+                   <br/>
+					<li class="nav-item">
+						<button
+						    style="margin:5px"
+							type="button"
+							id = "btn2"
+							class="btn btn-dark"
+							data-bs-toggle="modal"
+							data-bs-target="#signup"
+						>
+							Signup
+						</button>
+					</li>
+				</ul>
+
+				<!--checkout bootstrap modal to get the popup once any button is clicked without using any js
             Can be used for login-->
-            <!-- <ul class="navbar-nav ms-auto">
+				<!-- <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a href="#" class="nav-link" ><i class="bi bi-person"></i></a>
                 </li>
             </ul> -->
-        </div>        
-    </nav>
-    <!--banner-->
-    <section class="bg-dark text-light p-5 text-center">
-        <div class="container-fluid">
-            <div class="d-sm-flex align-items-center justify-content-between">
-                <div>
-                    <h1><span class="text-primary">Explore</span> events of RIT!</h1>
-                    <p class="lead my-4"><!--lead class is to make the font bigger my is for spacing-->
-                        Have fun exploring all the events of our very own Ramaiah Institute Of Technology.
-                    </p>
-                </div>
-                <img class="img-fluid w-50 ms-auto" src="images/team_collaboration.svg" alt="team">
-            </div>
-        </div>
-    </section>
-    <!--boxes-->
-    <section class="p-5">
-        <div class="container">
-            <h2 class="text-center text-dark">Upcoming events</h2><br>
-            <div class="row text-center g-4"><!--g-4 is to space btw the cards when they are atcked on each other in smaller screens-->
-               
-                <!-- for each item in list_of_events -->
-                <% for(var i=0; i < listOfEvents.length; i++) { %>
-                <div class="col-md-4">
-                    <div class="card bg-dark text-white">
-                        <img src=<%=listOfEvents[i].IMAGE_URL%> class="card-img" alt="event img">
-                        <div class="card-img-overlay">
-                          <h5 class="card-title"><%=listOfEvents[i].EVENT_TITLE%></h5>
-                          <p class="card-text"><%=listOfEvents[i].EVENT_DESC%></p>
-                          <a href="#" class="btn btn-light">more</a>
-                        </div>
-                      </div>
-                </div>
+			</div>
+		</nav>
+		<!--banner-->
+		<section class="bg-dark text-light p-5 text-center">
+			<div class="container-fluid">
+				<div class="d-sm-flex align-items-center justify-content-between">
+					<div>
+						<h1><span class="text-primary">Explore</span> events of RIT!</h1>
+						<p class="lead my-4">
+							<!--lead class is to make the font bigger my is for spacing-->
+							Have fun exploring all the events of our very own Ramaiah
+							Institute Of Technology.
+						</p>
+					</div>
+					<img
+						class="img-fluid w-50 ms-auto"
+						src="images/team_collaboration.svg"
+						alt="team"
+					/>
+				</div>
+			</div>
+		</section>
+		<!--boxes-->
+		<section class="p-5">
+			<div class="container">
+				<h2 class="text-center text-dark">Upcoming events</h2>
+				<br />
+				<div class="row text-center g-4">
+					<!--g-4 is to space btw the cards when they are atcked on each other in smaller screens-->
 
-                
-                <% } %>
+					<!-- for each item in list_of_events -->
+					<% for(var i=0; i < listOfEvents.length; i++) { %>
+					<div class="col-md-4">
+						<div class="card bg-dark text-white">
+							<img src=<%=listOfEvents[i].IMAGE_URL %> class="card-img" alt="event img">
+							<div class="card-img-overlay">
+								<h5 class="card-title"><%=listOfEvents[i].EVENT_TITLE%></h5>
+								<p class="card-text"><%=listOfEvents[i].EVENT_DESC%></p>
+								<a href="#" class="btn btn-light">more</a>
+							</div>
+						</div>
+					</div>
 
-                
-            </div>
-        </div>
-    </section>
-    <!--Clubs-->
-    <section class="p-5" id="clubs">
-        <div class="container">
-            <div class="row align-items-center justify-content-between">
-                <div class="col-md">
-                    <img class="img-fluid h-50" src="images/community.svg" alt="">
-                </div>
-                <div class="col-md p-5">
-                    <h2>Explore the clubs</h2>
-                    <p class="lead">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                         Ut quas praesentium alias inventore aspernatur at.
-                         Lorem ipsum dolor sit amet. 
-                    </p>
-                    <a href="clubs.html" class="btn btn-light mt-4">
-                        <i class="bi bi-chevron-right">Check out</i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+					<% } %>
+				</div>
+			</div>
+		</section>
+		<!--Clubs-->
+		<section class="p-5" id="clubs">
+			<div class="container">
+				<div class="row align-items-center justify-content-between">
+					<div class="col-md">
+						<img class="img-fluid h-50" src="images/community.svg" alt="" />
+					</div>
+					<div class="col-md p-5">
+						<h2>Explore the clubs</h2>
+						<p class="lead">
+							Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut quas
+							praesentium alias inventore aspernatur at. Lorem ipsum dolor sit
+							amet.
+						</p>
+						<a href="clubs.html" class="btn btn-light mt-4">
+							<i class="bi bi-chevron-right">Check out</i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
 
-    <!--events-->
+		<!--events-->
 
-    <section class="p-5 bg-dark text-light" id="events">
-        <div class="container">
-            <div class="row align-items-center justify-content-between">
-                <div class="col-md p-5">
-                    <h2>Explore the Events</h2>
-                    <p class="lead">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                         Ut quas praesentium alias inventore aspernatur at.
-                         Lorem ipsum dolor sit amet. 
-                    </p>
-                    <a href="events.html" class="btn btn-light mt-4">
-                        <i class="bi bi-chevron-right">Check out</i>
-                    </a>
-                </div>
-                <div class="col-md">
-                    <img src="images/festivities.svg" class="img-fluid" alt="">
-                </div>
-            </div>
-            
-        </div>
-    </section>
-    <!--footer-->
-    <footer class="p-5 bg-black sh text-white text-center align-items-center">
-        <div class="container">
-            <p>CopyRight &copy; 2021 DBS</p>
-        </div>
-    </footer>
-    <!-- Modal for login -->
-    <div class="modal fade" id="login" tabindex="-1" aria-labelledby="loginLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="loginLabel">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p class="lead">Fill in!</p>
-                <form action="">
-                    <div class="mb-2">
-                        <label for="username" class="col-form-label">
-                            Username:
-                        </label>
-                        <input type="text" class="form-control" id="username">
-                    </div>
-                    <div class="mb-2">
-                        <label for="password" class="col-form-label">
-                            password:
-                        </label>
-                        <input type="text" class="form-control" id="password">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-            <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-            <button type="button" class="btn btn-primary">Submit</button>
-            </div>
-        </div>
-        </div>
-    </div>
-    
+		<section class="p-5 bg-dark text-light" id="events">
+			<div class="container">
+				<div class="row align-items-center justify-content-between">
+					<div class="col-md p-5">
+						<h2>Explore the Events</h2>
+						<p class="lead">
+							Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut quas
+							praesentium alias inventore aspernatur at. Lorem ipsum dolor sit
+							amet.
+						</p>
+						<a href="events.html" class="btn btn-light mt-4">
+							<i class="bi bi-chevron-right">Check out</i>
+						</a>
+					</div>
+					<div class="col-md">
+						<img src="images/festivities.svg" class="img-fluid" alt="" />
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--footer-->
+		<footer class="p-5 bg-black sh text-white text-center align-items-center">
+			<div class="container">
+				<p>CopyRight &copy; 2021 DBS</p>
+			</div>
+		</footer>
+		<!-- Modal for login -->
+		<div
+			class="modal fade"
+            data-bs-backdrop="static" 
+			data-bs-keyboard="false"
+			id="login"
+			tabindex="-1"
+			role="dialog"
+			aria-labelledby="loginLabel"
+			aria-hidden="true"
+			
+		>
+			<div class="modal-dialog" >
+				<div class="modal-content">
+	
+				
+					<div class="modal-body">
+
+                       <h2 class="modal-title" align= "center" id="loginLabel" style="margin-top: 6%;
+	margin-bottom: 2%; color: #2c0253; " >RITshare</h2>
+
+	<h4 class="modal-title" align= "center" id="loginh"  style="
+	margin-bottom: 6%;  ">Login</h4>
+						<form id="login">
+				
+								<input
+								    class="form"
+									type="text"
+					
+									autocomplete="off"
+									id="usn"
+									placeholder="USN"
+								/>
+						
+						</br>
+							
+								<input
+									type="password"
+								     class="form"
+									autocomplete="off"
+									id="password"
+									placeholder="Password"
+								/>
+						
+
+							
+							 <button  class="forgot" 
+							  type="button"
+						
+							style="background:none; border:none;  margin-left: 35%;margin-bottom: 2%;
+						"
+							data-bs-toggle="modal"
+							data-bs-target="#forgot-password"
+							
+							  >Forgot password?</button>
+					</br>
+							    
+							    <div style="text-align: center;">
+    <span id="error">
+       
+    </span>
+</div>
+						
+								<input class= "submit "type="submit" value="Login" />
+							  <button  class="forgot" 
+							  type="button"
+						
+							style="background:none; border:none;  margin-left: 25%;
+							margin-bottom: 10%;"
+							  	data-bs-toggle="modal"
+							data-bs-target="#signup"
+							  >Don't have an account. SignUp?</button>
+					
+                           </br>
+
+						</form>
+					</div>
+				
+				</div>
+				<script>
+					const form = document.getElementById('login');
+					form.addEventListener('submit', login);
+
+					async function login(event) {
+						event.preventDefault();
+						const usn = document.getElementById('usn').value;
+						const password = document.getElementById('password').value;
+
+						const result = await fetch('/api/login', {
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/json'
+							},
+							body: JSON.stringify({
+								usn,
+								password
+							})
+						}).then((res) => res.json());
+
+						if (result.status === 'ok') {
+							window.location.replace('/');
+							console.log('Got the token: ', result.data);
+							token = result.data;
+							localStorage.setItem('token', result.data);
+							console.log('Success');
+						} else {
+							// alert(result.error);
+							error.textContent = result.error;
+            error.style.color = "red"
+						}
+					}
+
+				</script>
+			</div>
+		</div>
 
 
+		<!-- Modal for signup -->
+		<div
+			class="modal fade"
+			id="signup"
+			data-bs-backdrop="static" 
+			data-bs-keyboard="false"
+			tabindex="-1"
+			aria-labelledby="loginLabel"
+			aria-hidden="true"
+			
+		>
+			<div class="modal-dialog">
+				<div class="modal-content">
+				
+					<div class="modal-body">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
-     crossorigin="anonymous">
+                      <h2 class="modal-title" align= "center" id="loginLabel" style="margin-top: 6%;
+	margin-bottom: 2%; color: #2c0253; " >RITshare</h2>
 
-    $('#myCarousel').carousel({
-    interval: 5000
-    })
-</script>
-</body>
+	<h4 class="modal-title" align= "center" id="loginh"  style="
+	margin-bottom: 6%;  ">Signup</h4>
+						<form id="reg-form">
+			<input type="text" 
+			class="form"
+			autocomplete="off" id="usn1" placeholder="USN" />
+
+			<input
+				type="text"
+				class="form"
+				autocomplete="off"
+				id="username"
+				placeholder="Username"
+			/>
+
+			<input
+				type="password"
+				class="form"
+				autocomplete="off"
+				id="password1"
+				placeholder="Password"
+			/>
+
+				</br>
+							    
+							    <div style="text-align: center;">
+    <span id="error1">
+       
+    </span>
+</div>
+</br>
+
+			<input type="submit" class="submit1" value="Signup" />
+		</form>
+					</div>
+				
+				</div>
+
+					<script>
+			const form1 = document.getElementById('reg-form');
+			form1.addEventListener('submit', registerUser);
+
+			async function registerUser(event) {
+				event.preventDefault();
+				const usn = document.getElementById('usn1').value;
+				const username = document.getElementById('username').value;
+				const password = document.getElementById('password1').value;
+
+				const result = await fetch('/api/register', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						usn,
+						username,
+						password
+					})
+				}).then((res) => res.json());
+
+				if (result.status === 'ok') {
+					window.location.replace('/');
+					console.log('Success');
+				} else {
+					error1.textContent = result.error;
+            error1.style.color = "red"
+				}
+			}
+		</script>
+			
+			</div>
+		</div>
+
+		
+		<!-- Modal for forgot-password -->
+		<div
+			class="modal fade"
+			id="forgot-password"
+			tabindex="-1"
+			aria-labelledby="loginLabel"
+			aria-hidden="true"
+			data-bs-backdrop="static" 
+			data-bs-keyboard="false"
+			
+		>
+			<div class="modal-dialog">
+				<div class="modal-content">
+				
+					<div class="modal-body">
+
+                       <h2 class="modal-title" align= "center" id="loginLabel" style="margin-top: 6%;
+	margin-bottom: 2%; color: #2c0253; " >RITshare</h2>
+
+	<h4 class="modal-title" align= "center" id="loginh"  style="
+	margin-bottom: 6%;  ">Change your password.</h4>
+	</br>
+						<form id="forgot-password">
+			<input
+			class="form"
+				type="password"
+				autocomplete="off"
+				id="password2"
+				placeholder="Password"
+			/>
+				</br>
+				<div style="text-align: center;">		    
+			 <button  class="forgot" 
+							  type="button"
+							  id = "error2"
+						
+							style="background:none; border:none; text-decoration: underline ;  
+						"
+							data-bs-toggle="modal"
+							data-bs-target="#login"
+							
+							  ></button></div>	
+			  
+			<input type="submit" class="submit1" value="Change Password"  />
+	         
+		</form>
+
+				
+					<script>
+			const form2 = document.getElementById('forgot-password');
+			form2.addEventListener('submit', registerUser);
+
+			async function registerUser(event) {
+				event.preventDefault();
+				const password2 = document.getElementById('password2').value;
+
+				const result = await fetch('/api/change-password', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						newpassword: password2,
+						token: localStorage.getItem('token')
+					})
+				}).then((res) => res.json());
+
+				if (result.status === 'ok') {
+					console.log('Success');
+					error.textContent= "";
+					error2.textContent= "Password Changed! Login";
+					 error2.style.color = "green"
+				
+					
+				} else {
+					error.textContent= "";
+					error2.textContent = result.error;
+            error2.style.color = "red"
+			
+				}
+			}
+
+		</script>
+			
+			</div>
+		</div>
+
+
+		
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+			crossorigin="anonymous"
+		>
+
+		
+
+	
+			$('#myCarousel').carousel({
+			interval: 5000
+			});
+
+		
+		</script>
+	</body>
 </html>
