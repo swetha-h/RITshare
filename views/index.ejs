@@ -27,7 +27,7 @@
 			<div class="container-fluid">
 				<a href="#" class="navbar-brand">RITshare</a>
 				
-				<ul class="navbar-nav">
+				<!-- <ul class="navbar-nav">
 					<li class="nav-item">
 						<a href="#clubs" class="nav-link">Clubs</a>
 					</li>
@@ -36,7 +36,7 @@
 					<li class="nav-item">
 						<a href="#events" class="nav-link">Events</a>
 					</li>
-				</ul>
+				</ul> -->
 			
           
             <!--checkout bootstrap modal to get the popup once any button is clicked without using any js-->
@@ -80,6 +80,7 @@
                     <h1><span class="text-primary">Explore</span> events of RIT!</h1>
                     <p class="lead my-4"><!--lead class is to make the font bigger my is for spacing-->
                         Have fun exploring all the events of our very own Ramaiah Institute Of Technology.
+						Login to know more!
                     </p>
                 </div>
                 <img class="img-fluid w-50 ms-auto" src="images/team_collaboration.svg" alt="team">
@@ -87,78 +88,8 @@
         </div>
     </section>
     <!--boxes-->
-    <section class="p-5">
-        <div class="container">
-            <h2 class="text-center text-dark">Upcoming events</h2><br>
-            <div class="row text-center g-4"><!--g-4 is to space btw the cards when they are atcked on each other in smaller screens-->
-               
-                <!-- for each item in list_of_events -->
-                <% for(var i=0; i < event.length; i++) { %>
-                    <div class="col-md-4">
-                        <div class="card bg-dark text-white">
-                            <img src="images/Wallpaper.jpg" class="card-img" alt="event img">
-                            <div class="card-img-overlay">
-                              <h5 class="card-title"><%=event[i].name%></h5>
-                              <p class="card-text"><%=event[i].description%><br>Venue: 
-                                  <%=event[i].venue%><br>Date: 
-                                <%=event[i].date.toDateString()%><br>Time: 
-                                <%=event[i].date.toLocaleString('en-GB', { hour:'numeric', minute:'numeric', hour12:false } )%>
-                            </p>
-                            <button
-                            type="button"
-                            class="btn btn-dark"
-                            data-bs-toggle="modal"
-                            data-bs-target="#more"
-                          >
-                            more
-                          </button>
-                            </div>
-                          </div>
-                    </div>
-
-                
-                <% } %>
-
-                
-            </div>
-        </div>
-    </section>
-    <!-- Modal -->
-
-    <div
-      class="modal fade"
-      id="more"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="moreCenterTitle"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="moreLongTitle">Poster</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">...</div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
     
+    <!-- Modal -->
     <!--Clubs-->
     <section class="p-5" id="clubs">
         <div class="container">
@@ -173,9 +104,9 @@
                          Ut quas praesentium alias inventore aspernatur at.
                          Lorem ipsum dolor sit amet. 
                     </p>
-                    <a href="/clubs" class="btn btn-light mt-4">
+                    <!-- <a href="/clubs" class="btn btn-light mt-4">
                         <i class="bi bi-chevron-right">Check out</i>
-                    </a>
+                    </a> -->
                 </div>
             </div>
         </div>
@@ -193,9 +124,9 @@
                          Ut quas praesentium alias inventore aspernatur at.
                          Lorem ipsum dolor sit amet. 
                     </p>
-                    <a href="/events" class="btn btn-light mt-4">
+                    <!-- <a href="/events" class="btn btn-light mt-4">
                         <i class="bi bi-chevron-right">Check out</i>
-                    </a>
+                    </a> -->
                 </div>
                 <div class="col-md">
                     <img src="images/festivities.svg" class="img-fluid" alt="">
@@ -313,7 +244,8 @@
 						}).then((res) => res.json());
 
 						if (result.status === 'ok') {
-							window.location.replace('/');
+							// window.location.replace('/loggedin');
+							window.location.href = "/loggedin" +"?"+ usn;
 							console.log('Got the token: ', result.data);
 							token = result.data;
 							localStorage.setItem('token', result.data);
@@ -324,7 +256,7 @@
             error.style.color = "red"
 						}
 					}
-
+					
 				</script>
 			</div>
 		</div>
