@@ -111,16 +111,19 @@
                   <%=events[i].date.toLocaleString('en-GB', { hour:'numeric',
                   minute:'numeric', hour12:false } )%>
                 </p>
-                <a 
+                <!-- <a 
                 href="<%=events[i].image_path%>" 
-                target="_blank">
+                target="_blank"> -->
                   <button
                   type="button"
                   class="btn btn-dark"
+                  data-bs-toggle="modal"
+                  data-bs-target="#eventPoster"
+                  data-imgurl="<%=events[i].image_path%>"
                 >
                   more
                 </button>
-                </a>
+                <!-- </a> -->
               </div>
             </div>
           </div>
@@ -128,45 +131,35 @@
         </div>
       </div>
     </section>
-    <!-- Modal -->
 
-    <!-- <div
-      class="modal fade"
-      id="more"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="moreCenterTitle"
-      aria-hidden="true"
-    >
+    <!--Modal for event poster-->
+    <div class="modal fade" id="eventPoster" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="moreLongTitle">Poster</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+          <div class="modal-content">
+              <div class="modal-body">
+                  <img src="" alt="event poster" width="100%" height="100%">
+              </div>
           </div>
-          <div class="modal-body"><img src="image path should be here" alt="add image path"></div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-          </div>
-        </div>
       </div>
-    </div> -->
+    </div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+
+    <script>
+      $('#eventPoster').on('show.bs.modal', function (event) {
+        let imgUrl = $(event.relatedTarget).data('imgurl')
+        $(this).find('.modal-body img').attr("src", imgUrl)
+    })
+    </script>
   </body>
 </html>

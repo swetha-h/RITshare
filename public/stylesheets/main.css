@@ -7,3 +7,7 @@ body{
 .sh{
     height: 10px;
 }
+.modal-body {
+    max-height: calc(120vh - 143px);
+    /* max-width: calc(100vh - 143px); */
+    overflow-y: hidden; }
