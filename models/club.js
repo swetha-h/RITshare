@@ -4,9 +4,11 @@ const mongoose = require("mongoose");
 const clubSchema = mongoose.Schema({
   no: {
     type: Number,
-    required:true
-  }, 
-  name: String,   // String is shorthand for {type: String}
+    required: true,
+    unique: true,
+    index: true,
+  },
+  name: String, // String is shorthand for {type: String}
   description: String,
   deptNo: Number,
   leadUSN: String,

@@ -1,10 +1,11 @@
 {
+
 	"name": "ritshare",
 	"version": "0.0.0",
 	"description": "Platform to promote all the events of the college",
 	"private": true,
 	"scripts": {
-		"start": "nodemon ./bin/www"
+		"start": "node ./bin/www"
 	},
 	"dependencies": {
 		"bcryptjs": "^2.4.3",
@@ -31,4 +32,5 @@
 			"name": "Swetha H"
 		}
 	]
+
 }
