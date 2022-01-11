@@ -14,7 +14,9 @@ module.exports = {
       else {
         res.render("loggedin", {
           event: upcoming,
-          isTeamLead: clubsLead.find(record => record.leadUSN == req.query.usn)
+          isTeamLead: clubsLead.find(
+            (record) => record.leadUSN == req.query.usn
+          ),
         });
       }
     });
