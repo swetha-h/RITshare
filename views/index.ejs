@@ -245,7 +245,7 @@
 
 						if (result.status === 'ok') {
 							// window.location.replace('/loggedin');
-							window.location.href = "/loggedin" +"?"+ usn;
+							window.location.href = "/loggedin" +"?usn="+ usn;
 							console.log('Got the token: ', result.data);
 							token = result.data;
 							localStorage.setItem('token', result.data);
