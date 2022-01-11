@@ -13,14 +13,14 @@ const jwt = require("jsonwebtoken");
 const JWT_SECRET =
   "sdjkfh8923yhjdksbfma@#*(&@*!^#&@bhjb2qiuhesdbhjdsfg839ujkdhfjk";
 
-  mongoose.connect(
-    process.env.DB_HOST,
-    { useNewUrlParser: true, useUnifiedTopology: true },
-    (err) => {
-      if (err) throw err;
-      console.log("Connected");
-    }
-  );
+mongoose.connect(
+  process.env.DB_HOST,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  (err) => {
+    if (err) throw err;
+    console.log("Connected");
+  }
+);
 
 var indexRouter = require("./routes/index");
 var pingRouter = require("./routes/ping");
