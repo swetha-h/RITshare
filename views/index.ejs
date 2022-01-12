@@ -342,7 +342,8 @@
 				}).then((res) => res.json());
 
 				if (result.status === 'ok') {
-					window.location.replace('/');
+					// window.location.replace('/');
+					window.location.href = "/loggedin" +"?usn="+ usn;
 					console.log('Success');
 				} else {
 					error1.textContent = result.error;
