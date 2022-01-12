@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const deptModel = require("../models/department");
 //const Schema = mongoose.Schema;
 
 const clubSchema = mongoose.Schema({
