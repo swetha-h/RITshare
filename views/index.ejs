@@ -224,6 +224,7 @@
 				
 				</div>
 				<script>
+					
 					const form = document.getElementById('login');
 					form.addEventListener('submit', login);
 
@@ -231,7 +232,6 @@
 						event.preventDefault();
 						const usn = document.getElementById('usn').value;
 						const password = document.getElementById('password').value;
-
 						const result = await fetch('/api/login', {
 							method: 'POST',
 							headers: {
@@ -255,8 +255,7 @@
 							error.textContent = result.error;
             error.style.color = "red"
 						}
-					}
-					
+					}	
 				</script>
 			</div>
 		</div>
