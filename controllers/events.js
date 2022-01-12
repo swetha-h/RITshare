@@ -51,12 +51,12 @@ module.exports = {
   getDelete: function (req, res, next) {
     res.render("eventDelete");
   },
-  postDelete:function (req, res, next) {
+  postDelete: function (req, res, next) {
     const deleteEvent = new eventModel(req.body);
     console.log(req.body);
-    eventModel.remove({"name":deleteEvent.name}, function(err, result) {
-      res.send({msg:'error'+err}) 
+    eventModel.remove({ name: deleteEvent.name }, function (err, result) {
+      res.send({ msg: "error" + err });
       // res.send( (result === 1)? { msg: 'Deleted' } : { msg: 'error: '+ err } );
-  });
+    });
   },
 };
