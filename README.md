@@ -1,6 +1,8 @@
 # RITshare
 
-Platform to promote all the events of the college
+One platform to promote all the events of the college!
+No hassle of searching for posters in college or following and keeping up to date with several social media handles for the college events,
+our website covers everything for you!
 
 # Steps to run
 
