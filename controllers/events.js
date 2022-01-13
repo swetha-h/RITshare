@@ -55,7 +55,8 @@ module.exports = {
     const deleteEvent = new eventModel(req.body);
     console.log(req.body);
     eventModel.remove({"name":deleteEvent.name}, function(err, result) {
-      res.send({msg:'error'+err}) 
+      //res.send({msg:'error'+err});
+      res.redirect("/events"); 
       // res.send( (result === 1)? { msg: 'Deleted' } : { msg: 'error: '+ err } );
   });
   },
