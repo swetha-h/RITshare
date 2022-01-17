@@ -10,6 +10,5 @@ our website covers everything for you!
 git clone https://github.com/saitanmayee01/RITshare.git
 cd RITshare
 npm install
-npm install express body-parser bcryptjs jsonwebtoken mongoose cookie-parser morgan --save
 npm start # starts the server
 ```
