@@ -3,6 +3,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const mongoose = require("mongoose");
+const flash = require('connect-flash');
 require("dotenv").config();
 
 const bodyParser = require("body-parser");
@@ -10,8 +11,9 @@ const User = require("./models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const JWT_SECRET =
-  "sdjkfh8923yhjdksbfma@#*(&@*!^#&@bhjb2qiuhesdbhjdsfg839ujkdhfjk";
+const session = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
 mongoose.connect(
   process.env.DB_HOST,
@@ -27,6 +29,10 @@ var pingRouter = require("./routes/ping");
 var clubsRouter = require("./routes/clubs");
 var eventsRouter = require("./routes/events");
 var app = express();
+var middleWare=require("./routes/middleware");
+
+app.use(flash());
+
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -35,115 +41,41 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 
+app.use(session({secret:process.env.JWT_SECRET}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use("/", indexRouter);
 
 app.use("/ping", pingRouter);
-app.use("/clubs", clubsRouter);
-app.use("/events", eventsRouter);
+app.use("/clubs", middleWare.restrictMiddleware,clubsRouter);
+app.use("/events", middleWare.restrictMiddleware,eventsRouter);
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-app.post("/api/change-password", async (req, res) => {
-  const { token, newpassword: plainTextPassword } = req.body;
+passport.use(new LocalStrategy(User.authenticate()));
 
-  if (!plainTextPassword || typeof plainTextPassword !== "string") {
-    return res.json({ status: "error", error: "Invalid password!" });
-  }
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
-  if (plainTextPassword.length < 5) {
-    return res.json({
-      status: "error",
-      error: "Password too small. Should be atleast 6 characters.",
-    });
-  }
-
-  try {
-    const user = jwt.verify(token, JWT_SECRET);
-
-    const _id = user.id;
-
-    const password = await bcrypt.hash(plainTextPassword, 10);
-
-    await User.updateOne(
-      { _id },
-      {
-        $set: { password },
-      }
-    );
-    res.json({ status: "ok" });
-  } catch (error) {
-    console.log(error);
-    res.json({ status: "error", error: ";))" });
-  }
-});
-
-//login
-app.post("/api/login", async (req, res) => {
-  const { usn, password } = req.body;
-  const user = await User.findOne({ usn }).lean();
-
-  if (!user) {
-    return res.json({ status: "error", error: "Invalid USN/Password!" });
-  }
-
-  if (await bcrypt.compare(password, user.password)) {
-    const token = jwt.sign(
-      {
-        id: user._id,
-        usn: user.usn,
-      },
-      JWT_SECRET
-    );
-
-    return res.json({ status: "ok", data: token });
-  }
-
-  res.json({ status: "error", error: "Invalid USN/Password!" });
-});
-
-//signup
-app.post("/api/register", async (req, res) => {
-  const { usn, username, password: plainTextPassword } = req.body;
-
-  if (!username || typeof username !== "string") {
-    return res.json({ status: "error", error: "Invalid username!" });
-  }
-
-  if (!usn || typeof usn !== "string" || usn.length != 10) {
-    return res.json({ status: "error", error: "Invalid USN!" });
-  }
-
-  if (!plainTextPassword || typeof plainTextPassword !== "string") {
-    return res.json({ status: "error", error: "Invalid password!" });
-  }
-
-  if (plainTextPassword.length < 5) {
-    return res.json({
-      status: "error",
-      error: "Password too small. Should be atleast 6 characters",
-    });
-  }
-
-  const password = await bcrypt.hash(plainTextPassword, 10);
-
-  try {
-    const response = await User.create({
-      usn,
-      username,
-      password,
-    });
-    console.log("User created successfully: ", response);
-  } catch (error) {
-    if (error.code === 11000) {
-      // duplicate key
-      return res.json({
-        status: "error",
-        error: "USN already in use!",
-      });
+app.post('/api/register', function(req, res, next) {
+  console.log('registering user');
+  console.log(req.body);
+  User.register(new User({usn: req.body.usn, username: req.body.username}), req.body.password, function(err) {
+    
+    if (err) {
+      console.log('error while user register!', err);
+      return next(err);
     }
-    throw error;
-  }
 
-  res.json({ status: "ok" });
+    console.log('user registered!');
+    res.send({status:'ok'});
+  });
 });
+
+app.post('/api/login', passport.authenticate('local', { failureRedirect: '/'}), function(req, res) {
+  
+  res.send({status:'ok'});
+});
+
 
 module.exports = app;

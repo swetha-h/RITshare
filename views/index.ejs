@@ -238,7 +238,7 @@
 								'Content-Type': 'application/json'
 							},
 							body: JSON.stringify({
-								usn,
+								username:usn,
 								password
 							})
 						}).then((res) => res.json());
@@ -283,16 +283,13 @@
 	<h4 class="modal-title" align= "center" id="loginh"  style="
 	margin-bottom: 6%;  ">Signup</h4>
 						<form id="reg-form">
-			<input type="text" 
-			class="form"
-			autocomplete="off" id="usn1" placeholder="USN" />
-
+			
 			<input
 				type="text"
 				class="form"
 				autocomplete="off"
 				id="username"
-				placeholder="Username"
+				placeholder="USN"
 			/>
 
 			<input
@@ -324,7 +321,6 @@
 
 			async function registerUser(event) {
 				event.preventDefault();
-				const usn = document.getElementById('usn1').value;
 				const username = document.getElementById('username').value;
 				const password = document.getElementById('password1').value;
 
@@ -334,7 +330,6 @@
 						'Content-Type': 'application/json'
 					},
 					body: JSON.stringify({
-						usn,
 						username,
 						password
 					})
